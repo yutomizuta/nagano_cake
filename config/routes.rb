@@ -11,10 +11,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
+    get "/end_users" => "end_users#index"
   end
 
   scope module: :public do
     root to: 'homes#top'
     get "/publics/mypage" => "end_users#show"
+    get "/publics/edit" => "end_users#edit"
+    patch "/publics/update" => "end_users#update"
+    get "/publics/unsubscribe" => "end_users#unsubscribe"
+    patch "/publics/withdraw" => "end_users#withdraw"
   end
 end

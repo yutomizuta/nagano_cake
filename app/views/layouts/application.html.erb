@@ -25,7 +25,7 @@
         <%= link_to "LOGO", admin_root_path %>
       </h2>
       商品一覧
-      会員一覧
+      <%= link_to "会員一覧", admin_end_users_path %>
       注文履歴一覧
       ジャンル一覧
       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>

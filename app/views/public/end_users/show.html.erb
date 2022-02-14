@@ -1,1 +1,38 @@
-マイページ
+<h3>マイページ</h3>
+<div>
+  登録情報
+  <%= link_to "編集する", publics_edit_path, class: 'btn btn-success' %>
+</div>
+
+<table class="table table-borderd">
+  <tbody>
+    <tr>
+      <td>氏名</td>
+      <td><%= current_end_user.last_name %> <%= current_end_user.first_name %></td>
+    </tr>
+    <tr>
+      <td>カナ</td>
+      <td><%= current_end_user.last_name_kana %> <%= current_end_user.first_name_kana %></td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td><%= current_end_user.postal_code %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td><%= current_end_user.address %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td><%= current_end_user.phone_number %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= current_end_user.email %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div>配送先 一覧を見る</div>
+
+<div>注文履歴　一覧を見る</div>

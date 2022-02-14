@@ -1,0 +1,27 @@
+<h3>会員一覧</h3>
+<table class="table table-borderd">
+  <thead>
+    <tr>
+      <td>会員ID</td>
+      <td>氏名</td>
+      <td>メールアドレス</td>
+      <td>ステータス</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @end_users.each do |end_user| %>
+    <tr>
+      <td><%= end_user.id %></td>
+      <td><%= end_user.last_name %><%= end_user.first_name %></td>
+      <td><%= end_user.email %></td>
+      <td>
+        <% if end_user.is_deleted == false %>
+        <%= "有効" %>
+        <% else %>
+        <%= "退会" %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
