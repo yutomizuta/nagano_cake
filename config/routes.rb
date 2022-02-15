@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     get "/end_users" => "end_users#index"
+
+    resources :items, only: [:index, :show, :new, :create, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
 
   scope module: :public do
@@ -21,5 +24,7 @@ Rails.application.routes.draw do
     patch "/publics/update" => "end_users#update"
     get "/publics/unsubscribe" => "end_users#unsubscribe"
     patch "/publics/withdraw" => "end_users#withdraw"
+
+    resources :items, only: [:index, :show]
   end
 end
