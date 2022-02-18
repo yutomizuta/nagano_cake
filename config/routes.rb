@@ -26,5 +26,7 @@ Rails.application.routes.draw do
     patch "/publics/withdraw" => "end_users#withdraw"
 
     resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    delete "cart_items" => "cart_items#destroy_all", as: "destroy_all"
   end
 end

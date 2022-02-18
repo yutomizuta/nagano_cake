@@ -1,6 +1,7 @@
 <h3>会員情報編集</h3>
 
 <%= form_with model: @end_user, url: publics_update_path, method: :patch do |f| %>
+  
   <div>
     <%= f.label :氏名 %>
     <%= f.text_field :last_name %>

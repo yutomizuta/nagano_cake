@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
 
   belongs_to:genre
+  has_many:cart_items,dependent: :destroy
 
   has_one_attached :image
 
@@ -8,7 +9,6 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :price, presence: true
-  validates :image, presence: true
 
   def get_image
     unless image.attached?
@@ -19,6 +19,6 @@ class Item < ApplicationRecord
   end
 
   def add_tax_price
-    (self.price * 1.10).round
+    (self.price * 1.10).floor
   end
 end

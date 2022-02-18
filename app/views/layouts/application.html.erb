@@ -18,7 +18,7 @@
       </h2>
       <%= link_to "マイページ", publics_mypage_path %>
       <%= link_to "商品一覧", items_path %>
-      カート
+      <%= link_to "カート", cart_items_path %>
       <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
       <% elsif admin_signed_in? %>
       <h2>

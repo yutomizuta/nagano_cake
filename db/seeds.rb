@@ -10,3 +10,15 @@ Admin.create!(
     email: "aaa@aaa",
     password: "aaaaaa"
 )
+
+Genre.create!(
+  name: "ケーキ"
+)
+
+Item.create!(
+  genre_id: 1,
+  name: "ショートケーキ",
+  image_id: "",
+  description: "新作ケーキです。",
+  price: 1000,
+)

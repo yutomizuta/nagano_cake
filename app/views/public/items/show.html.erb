@@ -1,0 +1,15 @@
+<%= image_tag @item.get_image %>
+
+<h3><strong><%= @item.name %></strong></h3>
+<p><%= @item.description %></p>
+<p>￥<%= @item.add_tax_price.to_s(:delimited) %>（税込）</p>
+
+<%= form_with model: @cart_item, url: cart_items_path do |f| %>
+  <% if @item.status == false %>
+    <%= f.select :amount, *[1..10] %>
+    <%= f.hidden_field :item_id, value:@item.id %>
+    <%= f.submit "カートに入れる", class: 'btn btn-success' %>
+  <% else %>
+    <h5>※売り切れ商品です</h5>
+  <% end %>
+<% end %>
