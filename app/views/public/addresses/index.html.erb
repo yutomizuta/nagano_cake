@@ -1,0 +1,42 @@
+<h3>配送先登録/一覧</h3>
+
+<%= flash[:notice] %>
+
+<%= form_with model: @address, url: addresses_path do |f| %>
+
+<table>
+  <tr>
+    <td><%= f.label :郵便番号（ハイフンなし） %></td>
+    <td><%= f.text_field :postal_code %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :住所 %></td>
+    <td><%= f.text_field :address %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :宛名 %></td>
+    <td><%= f.text_field :receiver_name %></td>
+    <td><%= f.submit '新規登録', class: 'btn btn-success' %></td>
+  </tr>
+<% end %>
+</table>
+
+<table class="table table-bordered">
+  <tr class='table-active'>
+    <th>郵便番号</th>
+    <th>住所</th>
+    <th>宛名</th>
+    <th></th>
+  </tr>
+  <% @addresses.each do |address| %>
+  <tr>
+    <td><%= address.postal_code %></td>
+    <td><%= address.address %></td>
+    <td><%= address.receiver_name %></td>
+    <td>
+      <%= link_to "編集する", edit_address_path(address), class: 'btn btn-success' %>
+      <%= link_to "削除する", address_path(address), class: 'btn btn-danger', method: :delete, data: {confirm: "削除しますか？"} %>
+    </td>
+  </tr>
+  <% end %>
+</table>
