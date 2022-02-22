@@ -26,7 +26,7 @@
       </h2>
       <%= link_to "商品一覧", admin_items_path %>
       <%= link_to "会員一覧", admin_end_users_path %>
-      注文履歴一覧
+      <%= link_to "注文履歴一覧", admin_root_path %>
       <%= link_to "ジャンル一覧", admin_genres_path %>
       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
       <% else %>

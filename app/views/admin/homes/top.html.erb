@@ -1,1 +1,18 @@
-Topページです
+<h3>注文履歴一覧</h3>
+
+<table class="table table-bordered">
+  <tr>
+    <th>購入日時</th>
+    <th>購入者</th>
+    <th>注文個数</th>
+    <th>注文ステータス</th>
+  </tr>
+  <% @orders.each do |order| %>
+  <tr>
+    <td><%= link_to order.created_at.to_s(:datetime_jp), admin_order_path(order) %></td>
+    <td><%= order.end_user.last_name %><%= order.end_user.first_name %></td>
+    <td><%= order.order_details.sum(:amount) %></td>
+    <td><%= order.order_status_i18n %></td>
+  </tr>
+  <% end %>
+</table>

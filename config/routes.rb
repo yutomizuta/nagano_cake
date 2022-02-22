@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :show, :new, :create, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
   end
 
   scope module: :public do
@@ -29,5 +31,11 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :create, :update, :destroy]
     delete "cart_items" => "cart_items#destroy_all", as: "destroy_all"
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :orders, only: [:new, :index, :show, :create] do
+      collection do
+        post :confirm
+        get :complete
+      end
+    end
   end
 end

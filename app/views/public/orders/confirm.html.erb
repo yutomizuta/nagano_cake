@@ -1,0 +1,65 @@
+<h3>注文情報確認</h3>
+
+<table class='table table-bordered'>
+  <tr　class='table-active'>
+    <th>商品名</th>
+    <th>単価（税込）</th>
+    <th>数量</th>
+    <th>小計</th>
+  </tr>
+
+  <% @cart_items.each do |cart_item| %>
+  <tr>
+    <td>
+      <%= image_tag cart_item.item.get_image %>
+      <%= cart_item.item.name %>
+    </td>
+    <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
+    <td><%= cart_item.amount %></td>
+    <td><%= (cart_item.item.add_tax_price * cart_item.amount).to_s(:delimited) %></td>
+  </tr>
+  <% end %>
+</table>
+
+<table class="table table-bordered">
+  <tr>
+    <th>送料</th>
+    <td><%= @order.shipping_fee %></td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td><%= @total.floor.to_s(:delimited) %></td>
+  </tr>
+  <tr>
+    <th>請求金額</th>
+    <td>
+      <% @total += @order.shipping_fee  %>
+      <%= @total.to_s(:delimited) %>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td>支払方法</td>
+    <td><%= @order.payment_method_i18n %></td>
+  </tr>
+  <tr>
+    <td>お届け先</td>
+    <td>
+      〒<%= @order.ordered_postal_code %><%= @order.ordered_address %><%= @order.ordered_receiver_name %>
+    </td>
+  </tr>
+</table>
+
+<%= form_with model:@order, url: orders_path, method: :post do |f|  %>
+  <div>
+    <%= f.hidden_field :ordered_postal_code, value:@order.ordered_postal_code %>
+    <%= f.hidden_field :payment_method, value:@order.payment_method %>
+    <%= f.hidden_field :shipping_fee, value:@order.shipping_fee %>
+    <%= f.hidden_field :ordered_address, value:@order.ordered_address %>
+    <%= f.hidden_field :ordered_receiver_name, value:@order.ordered_receiver_name %>
+    <%= f.hidden_field :billing_amount, value:@total %>
+    <%= f.submit "注文を確定する", class: 'btn btn-success', data: {confirm: "注文を確定してよろしいですか？"} %>
+  </div>
+<% end %>
