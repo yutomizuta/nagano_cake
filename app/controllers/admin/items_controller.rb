@@ -1,6 +1,12 @@
 class Admin::ItemsController < ApplicationController
   
   before_action :authenticate_admin!
+  
+  def search
+    @items = Item.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
+  end
 
   def new
     @item = Item.new

@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "/end_users" => "end_users#index"
 
-    resources :items, only: [:index, :show, :new, :create, :edit, :update]
+    resources :items, only: [:index, :show, :new, :create, :edit, :update] do
+      collection do
+        get :search
+      end
+    end
     resources :genres, only: [:index, :create, :edit, :update]
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]

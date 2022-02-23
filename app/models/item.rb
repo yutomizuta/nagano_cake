@@ -22,4 +22,9 @@ class Item < ApplicationRecord
   def add_tax_price
     (self.price * 1.10).floor
   end
+
+  def self.search(keyword)
+   where(["name like?", "%#{keyword}%"])
+  end
+
 end
