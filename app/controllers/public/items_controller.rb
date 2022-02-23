@@ -1,7 +1,8 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    @items = params[:name].present? ? Genre.find(params[:name]).items : Item.all
+    @genres = Genre.all
   end
 
   def show
